@@ -1,44 +1,41 @@
 
 
-<div class=" min-h-screen  lg:max-w-7xl mx-auto  pt-25 pb-5  w-full  flex gap-4 px-2 sm:px-4 md:px-8  ">
+<div class="min-h-screen lg:max-w-7xl mx-auto pt-25 pb-5 w-full flex gap-4 px-2 sm:px-4 md:px-8">
 
+  <div class="flex flex-1 flex-col items-center w-full gap-2">
 
+    <h2 class="text-2xl sm:text-4xl font-bold text-center bg-gradient-to-r from-accent-blue via-accent-purple to-accent-pink text-transparent bg-clip-text">Admin Dashboard</h2>
 
-  <div class="flex flex-1 flex-col items-center w-full gap-2 ">
-
-    <h2 class=" text-2xl sm:text-4xl font-bold text-center  text-base-heading">Admin Dashboard</h2>
-
-    <div class="flex gap-2 bg-base-nav p-2 sm:p-4 rounded-md text-sm sm:text-lg">
+    <div class="flex gap-2 bg-base-nav p-2 sm:p-4 rounded-md text-sm sm:text-lg border border-base-text/20">
       <button
       (click) = " activeTab = 'database' "
-        [ngClass]="{'bg-base-section': activeTab === 'database', 'bg-base-dark/50 ': activeTab === 'search'}"
-      class=" text-base-heading px-4 py-2 rounded-md cursor-pointer hover:scale-105 hover:bg-opacity-80 transition-all duration-300">
+        [ngClass]="{'bg-accent-blue text-white': activeTab === 'database', 'bg-base-section text-base-heading': activeTab === 'search'}"
+      class="px-4 py-2 rounded-md cursor-pointer hover:scale-105 transition-all duration-300">
         Movies in Database
       </button>
       <button
         (click) = " activeTab = 'search' "
-        [ngClass]="{'bg-base-section': activeTab === 'search', 'bg-base-dark/50': activeTab === 'database'}"
-        class=" text-base-heading px-4 py-2 rounded-md cursor-pointer hover:scale-105 hover:bg-opacity-80 transition-all duration-300">
+        [ngClass]="{'bg-accent-blue text-white': activeTab === 'search', 'bg-base-section text-base-heading': activeTab === 'database'}"
+        class="px-4 py-2 rounded-md cursor-pointer hover:scale-105 transition-all duration-300">
       Search for Movies
       </button>
-
     </div>
 
     @if (activeTab === 'search') {
 
-    <div class="flex flex-col md:flex-row justify-center items-center gap-4 mt-5 w-fit px-8 py-4 border-1 border-base-text/50 bg-base-nav rounded-lg ">
+    <div class="flex flex-col md:flex-row justify-center items-center gap-4 mt-5 w-fit px-8 py-4 border border-base-text/20 bg-base-nav rounded-lg">
 
-      <div class="flex gap-2 items-center  rounded-md p-2  w-full bg-base-heading ">
-        <lucide-angular [img]="SearchIcon" class="my-icon text-base-section w-5 h-5"></lucide-angular>
-        <input [(ngModel)]="query" type="text" class="bg-transparent outline-none  text-base-dark text-sm sm:text-lg w-full placeholder:text-base-section" placeholder="Search movies by name...">
+      <div class="flex gap-2 items-center rounded-md p-2 w-full bg-base-section border border-base-text/20">
+        <lucide-angular [img]="SearchIcon" class="my-icon text-base-text w-5 h-5"></lucide-angular>
+        <input [(ngModel)]="query" type="text" class="bg-transparent outline-none text-base-heading text-sm sm:text-lg w-full placeholder:text-base-text" placeholder="Search movies by name...">
       </div>
 
-      <div class="flex gap-2 items-center  rounded-md p-2  w-full bg-base-heading ">
-        <lucide-angular [img]="CalendarSearch " class="my-icon text-base-section w-5 h-5"></lucide-angular>
-        <input [(ngModel)]="date" type="text" class="bg-transparent outline-none text-base-dark  text-sm sm:text-lg w-full placeholder:text-base-section" placeholder="Search movies by year...">
+      <div class="flex gap-2 items-center rounded-md p-2 w-full bg-base-section border border-base-text/20">
+        <lucide-angular [img]="CalendarSearch " class="my-icon text-base-text w-5 h-5"></lucide-angular>
+        <input [(ngModel)]="date" type="text" class="bg-transparent outline-none text-base-heading text-sm sm:text-lg w-full placeholder:text-base-text" placeholder="Search movies by year...">
       </div>
 
-      <button (click)="searchMovies()"   class="bg-gradient-to-r from-accent-blue/80 to-accent-purple hover:from-accent-pink  text-white px-4 py-2 text-sm sm:text-lg rounded-md cursor-pointer  hover:bg-opacity-80 transition-all duration-300">
+      <button (click)="searchMovies()" class="bg-gradient-to-r from-accent-blue to-accent-purple hover:from-accent-purple hover:to-accent-cyan text-white px-4 py-2 text-sm sm:text-lg rounded-md cursor-pointer transition-all duration-300 shadow-md">
         Search
       </button>
     </div>
@@ -48,12 +45,12 @@
         <div class="flex flex-col md:flex-row justify-between items-center ">
           <h3 class="text-lg sm:text-xl md:text-2xl font-semibold text-center  mb-4 text-base-text ">Search Results</h3>
 
-          <div class=" flex flex-col md:flex-row justify-end gap-2 mb-4">
+          <div class="flex flex-col md:flex-row justify-end gap-2 mb-4">
             @if(selectedMovies.length > 0){
-              <button (click)="addToDatabaseBatch()" class=" bg-gradient-to-r from-accent-blue/80 to-accent-purple hover:from-accent-pink  text-white px-4 py-2 text-sm sm:text-lg rounded-md cursor-pointer  hover:bg-opacity-80 transition-all duration-300">
+              <button (click)="addToDatabaseBatch()" class="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-4 py-2 text-sm sm:text-lg rounded-md cursor-pointer transition-all duration-300 shadow-md">
                 Add Selected to Database
               </button>
-              <button (click)="resetSelectedMovies()" class="  bg-transparent border border-base-text/50 hover:bg-base-text/40 text-base-text px-4 py-2 text-sm sm:text-lg rounded-md cursor-pointer transition-all duration-300">
+              <button (click)="resetSelectedMovies()" class="bg-transparent border border-base-text/50 hover:bg-base-text/20 text-base-text px-4 py-2 text-sm sm:text-lg rounded-md cursor-pointer transition-all duration-300">
                 Reset Selected
               </button>
             }
@@ -74,9 +71,9 @@
         </div>
 
         <div class="text-center flex justify-center items-center mt-10 gap-4">
-          <button (click)="loadPage(page - 1)" [disabled]="page === 1" class="hover:cursor-pointer bg-base-heading rounded-full hover:bg-base-section hover:text-base-heading hover:scale-105 transition-all duration-100 w-10 h-10"> < </button>
+          <button (click)="loadPage(page - 1)" [disabled]="page === 1" class="bg-accent-blue hover:bg-accent-blue/90 disabled:bg-base-text disabled:cursor-not-allowed text-white rounded-full hover:scale-105 transition-all duration-200 w-10 h-10"> < </button>
           <span class="text-base-heading text-lg"> {{ page }}</span>
-          <button (click)="loadPage(page + 1)" class="hover:cursor-pointer bg-base-heading rounded-full hover:bg-base-section hover:text-base-heading hover:scale-105 transition-all duration-100 w-10 h-10" > > </button>
+          <button (click)="loadPage(page + 1)" class="bg-accent-blue hover:bg-accent-blue/90 text-white rounded-full hover:scale-105 transition-all duration-200 w-10 h-10" > > </button>
         </div>
 
 
@@ -86,14 +83,14 @@
       <!-- Loading -->
       @if (isLoading) {
         <div class="flex justify-center items-center mt-10">
-          <div class="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-accent-pink"></div>
+          <div class="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-accent-blue"></div>
         </div>
       }
 
       <!-- Error Message -->
       @if (error && !isLoading) {
         <div class="flex justify-center items-center mt-10">
-          <div class=" border border-red-800 text-red-700 px-4 py-3 rounded">
+          <div class="border border-red-600 bg-red-50 text-red-700 px-4 py-3 rounded">
             {{ error }}
           </div>
         </div>
@@ -106,11 +103,11 @@
         <div class="flex flex-col md:flex-row justify-between items-center ">
           <h3 class=" text-lg sm:text-xl md:text-2xl font-semibold text-center mb-4 text-base-text">Movies in Database</h3>
           @if(selectedMovies.length > 0){
-            <div class="flex flex-col md:flex-row justify-end gap-2  mb-4">
-              <button (click)="deleteFromDatabaseBatch()" class=" bg-gradient-to-r from-accent-blue/80 to-accent-purple hover:from-accent-pink  text-white px-4 py-2 text-sm sm:text-lg rounded-md cursor-pointer  hover:bg-opacity-80 transition-all duration-300">
+            <div class="flex flex-col md:flex-row justify-end gap-2 mb-4">
+              <button (click)="deleteFromDatabaseBatch()" class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 text-sm sm:text-lg rounded-md cursor-pointer transition-all duration-300 shadow-md">
                 Delete Selected from Database
               </button>
-              <button (click)="resetSelectedMovies()" class=" bg-transparent border border-base-text/50 hover:bg-base-text/40 text-base-text px-4 py-2 text-sm sm:text-lg rounded-md cursor-pointer transition-all duration-300">
+              <button (click)="resetSelectedMovies()" class="bg-transparent border border-base-text/50 hover:bg-base-text/20 text-base-text px-4 py-2 text-sm sm:text-lg rounded-md cursor-pointer transition-all duration-300">
                 Reset Selected
               </button>
             </div>

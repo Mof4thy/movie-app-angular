@@ -9,20 +9,24 @@
 
 
 @theme {
-  --color-primary-black: #03050A;
-  --color-slate-gray: #727989;
+  /* Darker Balanced Theme */
 
-  /* base */
-  --color-base-dark: #03050A; /* background */
-  --color-base-nav: #0C111C; /* nav  card*/
-  --color-base-section: #13192F; /* background */
-  --color-base-text: #727989; /* text */
-  --color-base-heading: #BDBEC5; /* heading */
+  /* base colors - darker, more comfortable tones */
+  --color-base-dark: #1E293B; /* main background - dark slate */
+  --color-base-nav: #334155; /* nav and card backgrounds - medium dark */
+  --color-base-section: #475569; /* section backgrounds - medium gray */
+  --color-base-text: #94A3B8; /* body text - light gray for contrast */
+  --color-base-heading: #F1F5F9; /* headings - very light for contrast */
 
-  /* accent */
-  --color-accent-blue: #00F5FF; /* accent blue */
-  --color-accent-purple: #9D4EDD; /* accent purple */
-  --color-accent-pink: #FF2E92; /* accent pink */
+  /* accent colors - beautiful gradient-ready colors */
+  --color-accent-blue: #3B82F6; /* primary blue */
+  --color-accent-purple: #8B5CF6; /* vibrant purple for gradients */
+  --color-accent-pink: #EC4899; /* vibrant pink for gradients */
+  --color-accent-cyan: #06B6D4; /* cyan for variety */
+
+  /* legacy support */
+  --color-primary-black: #1E293B;
+  --color-slate-gray: #64748B;
 
 }
 

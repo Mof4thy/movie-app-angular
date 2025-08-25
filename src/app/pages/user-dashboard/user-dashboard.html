@@ -1,23 +1,22 @@
 
 
-<div class=" min-h-screen  lg:max-w-7xl mx-auto pt-25  pb-5 px-2 sm:px-4 md:px-8  w-full  flex flex-col gap-12 ">
+<div class="min-h-screen lg:max-w-7xl mx-auto pt-25 pb-5 px-2 sm:px-4 md:px-8 w-full flex flex-col gap-12">
 
+  <div class="flex flex-col gap-4 items-center w-full">
 
-  <div class="flex flex-col gap-4 items-center w-full ">
+    <h2 class="text-2xl sm:text-4xl font-bold text-center mb-4 text-base-heading transition-all duration-300">Discover your next <span class="bg-gradient-to-r from-accent-blue to-accent-purple text-transparent bg-clip-text">favorite movie</span></h2>
 
-    <h2 class="text-2xl sm:text-4xl font-bold text-center mb-4 bg-base-heading text-transparent bg-clip-text transition-all duration-300">discover your next <span class="bg-gradient-to-br from-accent-purple to-accent-blue/80 text-transparent bg-clip-text">favorite movie</span></h2>
+    <div class="flex flex-col md:flex-row justify-center items-center gap-4 w-fit px-8 py-4 border border-base-text/20 bg-base-nav rounded-lg">
 
-    <div class="flex flex-col md:flex-row justify-center items-center gap-4  w-fit px-8 py-4 border-1 border-base-text/50 bg-base-nav rounded-lg ">
-
-      <div class="flex gap-2 items-center  rounded-md p-2   bg-base-heading  ">
-        <lucide-angular [img]="SearchIcon" class="my-icon text-base-section w-5 h-5"></lucide-angular>
-        <input [(ngModel)]="movieName" type="text" class="bg-transparent outline-none  text-base-dark text-sm sm:text-lg w-full placeholder:text-base-section transition-all duration-300" placeholder="Search by name...">
+      <div class="flex gap-2 items-center rounded-md p-2 bg-base-section border border-base-text/20">
+        <lucide-angular [img]="SearchIcon" class="my-icon text-base-text w-5 h-5"></lucide-angular>
+        <input [(ngModel)]="movieName" type="text" class="bg-transparent outline-none text-base-heading text-sm sm:text-lg w-full placeholder:text-base-text transition-all duration-300" placeholder="Search by name...">
       </div>
 
-      <button (click)="searchMovies()" class="bg-gradient-to-br from-accent-purple/80 to-accent-blue/80 hover:scale-105  text-white px-4 py-2 text-sm sm:text-lg rounded-md cursor-pointer  hover:bg-opacity-80 transition-all duration-300">
+      <button (click)="searchMovies()" class="bg-gradient-to-r from-accent-blue to-accent-purple hover:from-accent-purple hover:to-accent-cyan hover:scale-105 text-white px-4 py-2 text-sm sm:text-lg rounded-md cursor-pointer transition-all duration-300 shadow-md">
         Search
       </button>
-      <button (click)="resetSearch()" class="bg-transparent border border-base-text/50 hover:bg-base-text/40 text-base-text px-4 py-2 text-sm sm:text-lg rounded-md cursor-pointer transition-all duration-300">
+      <button (click)="resetSearch()" class="bg-transparent border border-base-text/50 hover:bg-base-text/20 text-base-text px-4 py-2 text-sm sm:text-lg rounded-md cursor-pointer transition-all duration-300">
         Reset
       </button>
     </div>
