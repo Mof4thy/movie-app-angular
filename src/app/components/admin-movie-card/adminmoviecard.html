@@ -5,7 +5,7 @@
 
     <div class="relative">
       <div class=" overflow-hidden max-h-[300px] w-full flex items-center justify-center">
-        <img [src]=" movie?.poster" alt="movie image" class="max-w-sm h-full object-cover  ">
+        <img [src]=" movie?.poster" alt="movie image" class="max-w-sm min-h-[300px] object-cover  ">
       </div>
       @if(!isInDatabase(movie?.imdbID!) && tab === 'search'){
         <div class="absolute z-10 top-2 right-2">

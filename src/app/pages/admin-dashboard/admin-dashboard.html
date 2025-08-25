@@ -71,8 +71,15 @@
             >
           </app-adminmoviecard>
           }
-
         </div>
+
+        <div class="text-center flex justify-center items-center mt-10 gap-4">
+          <button (click)="loadPage(page - 1)" [disabled]="page === 1" class="hover:cursor-pointer bg-base-heading rounded-full hover:bg-base-section hover:text-base-heading hover:scale-105 transition-all duration-100 w-10 h-10"> < </button>
+          <span class="text-base-heading text-lg"> {{ page }}</span>
+          <button (click)="loadPage(page + 1)" class="hover:cursor-pointer bg-base-heading rounded-full hover:bg-base-section hover:text-base-heading hover:scale-105 transition-all duration-100 w-10 h-10" > > </button>
+        </div>
+
+
       </div>
     }
 

@@ -21,7 +21,7 @@ export class MovieService {
   // ====== OMDB METHODS ======
 
     // search movies function by title and/or date
-    searchMovies(query : string , date : string): Observable<any>{
+    searchMovies(query : string , date : string, page : number = 1): Observable<any>{
       let url = this.omdbUrl;
 
       // Add search query if provided
@@ -38,7 +38,7 @@ export class MovieService {
       if (!query && date) {
         url += `&s=movie`;
       }
-      return this.http.get(url);
+      return this.http.get(url+`&page=${page}`);
 
     }
 

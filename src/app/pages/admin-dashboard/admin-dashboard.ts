@@ -21,6 +21,7 @@ export class AdminDashboard implements OnInit {
   // search variables
   date : string = '';
   query : string = '';
+  page : number = 1;
   // search results
   movies : Movie[] = [];
   // loading state
@@ -37,6 +38,12 @@ export class AdminDashboard implements OnInit {
   constructor(private movieService : MovieService , private moviestoreService : MovieStoreService){}
 
 
+  loadPage(page : number){
+    this.page = page;
+    this.searchMovies();
+  }
+
+
   searchMovies(){
     // Check if at least one field is filled
     if (!this.query.trim() && !this.date.trim()) {
@@ -47,7 +54,7 @@ export class AdminDashboard implements OnInit {
 
     this.movies = []; // Clear previous results
 
-    this.movieService.searchMovies(this.query.trim(), this.date.trim()).subscribe(
+    this.movieService.searchMovies(this.query.trim(), this.date.trim(), this.page).subscribe(
       {
         next:(response : any) => {
           console.log(response.Search);
