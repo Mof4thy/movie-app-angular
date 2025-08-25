@@ -1,0 +1,133 @@
+
+
+<div class=" min-h-screen  lg:max-w-7xl mx-auto  pt-25 pb-5  w-full  flex gap-4 px-2 sm:px-4 md:px-8  ">
+
+
+
+  <div class="flex flex-1 flex-col items-center w-full gap-2 ">
+
+    <h2 class=" text-2xl sm:text-4xl font-bold text-center  text-base-heading">Admin Dashboard</h2>
+
+    <div class="flex gap-2 bg-base-nav p-2 sm:p-4 rounded-md text-sm sm:text-lg">
+      <button
+      (click) = " activeTab = 'database' "
+        [ngClass]="{'bg-base-section': activeTab === 'database', 'bg-base-dark/50 ': activeTab === 'search'}"
+      class=" text-base-heading px-4 py-2 rounded-md cursor-pointer hover:scale-105 hover:bg-opacity-80 transition-all duration-300">
+        Movies in Database
+      </button>
+      <button
+        (click) = " activeTab = 'search' "
+        [ngClass]="{'bg-base-section': activeTab === 'search', 'bg-base-dark/50': activeTab === 'database'}"
+        class=" text-base-heading px-4 py-2 rounded-md cursor-pointer hover:scale-105 hover:bg-opacity-80 transition-all duration-300">
+      Search for Movies
+      </button>
+
+    </div>
+
+    @if (activeTab === 'search') {
+
+    <div class="flex flex-col md:flex-row justify-center items-center gap-4 mt-5 w-fit px-8 py-4 border-1 border-base-text/50 bg-base-nav rounded-lg ">
+
+      <div class="flex gap-2 items-center  rounded-md p-2  w-full bg-base-heading ">
+        <lucide-angular [img]="SearchIcon" class="my-icon text-base-section w-5 h-5"></lucide-angular>
+        <input [(ngModel)]="query" type="text" class="bg-transparent outline-none  text-base-dark text-sm sm:text-lg w-full placeholder:text-base-section" placeholder="Search movies by name...">
+      </div>
+
+      <div class="flex gap-2 items-center  rounded-md p-2  w-full bg-base-heading ">
+        <lucide-angular [img]="CalendarSearch " class="my-icon text-base-section w-5 h-5"></lucide-angular>
+        <input [(ngModel)]="date" type="text" class="bg-transparent outline-none text-base-dark  text-sm sm:text-lg w-full placeholder:text-base-section" placeholder="Search movies by year...">
+      </div>
+
+      <button (click)="searchMovies()"   class="bg-gradient-to-r from-accent-blue/80 to-accent-purple hover:from-accent-pink  text-white px-4 py-2 text-sm sm:text-lg rounded-md cursor-pointer  hover:bg-opacity-80 transition-all duration-300">
+        Search
+      </button>
+    </div>
+
+    @if (movies.length > 0 && !isLoading) {
+      <div class="mt-5 w-full  p-4 md:p-6">
+        <div class="flex flex-col md:flex-row justify-between items-center ">
+          <h3 class="text-lg sm:text-xl md:text-2xl font-semibold text-center  mb-4 text-base-text ">Search Results</h3>
+
+          <div class=" flex flex-col md:flex-row justify-end gap-2 mb-4">
+            @if(selectedMovies.length > 0){
+              <button (click)="addToDatabaseBatch()" class=" bg-gradient-to-r from-accent-blue/80 to-accent-purple hover:from-accent-pink  text-white px-4 py-2 text-sm sm:text-lg rounded-md cursor-pointer  hover:bg-opacity-80 transition-all duration-300">
+                Add Selected to Database
+              </button>
+              <button (click)="resetSelectedMovies()" class="  bg-transparent border border-base-text/50 hover:bg-base-text/40 text-base-text px-4 py-2 text-sm sm:text-lg rounded-md cursor-pointer transition-all duration-300">
+                Reset Selected
+              </button>
+            }
+
+          </div>
+        </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 ">
+            @for (movie of movies; track movie.imdbID) {
+            <app-adminmoviecard
+            [movie]="movie"
+            (movieSelected)="selectMovie($event)"
+            (movieUnselected)="unselectMovie($event)"
+            [tab]="'search'"
+            [isSelected]="selectedMovies.includes(movie)"
+            >
+          </app-adminmoviecard>
+          }
+
+        </div>
+      </div>
+    }
+
+      <!-- Loading -->
+      @if (isLoading) {
+        <div class="flex justify-center items-center mt-10">
+          <div class="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-accent-pink"></div>
+        </div>
+      }
+
+      <!-- Error Message -->
+      @if (error && !isLoading) {
+        <div class="flex justify-center items-center mt-10">
+          <div class=" border border-red-800 text-red-700 px-4 py-3 rounded">
+            {{ error }}
+          </div>
+        </div>
+      }
+
+    }
+
+    @if (activeTab === 'database') {
+      <div class="mt-2 w-full p-4 md:p-6">
+        <div class="flex flex-col md:flex-row justify-between items-center ">
+          <h3 class=" text-lg sm:text-xl md:text-2xl font-semibold text-center mb-4 text-base-text">Movies in Database</h3>
+          @if(selectedMovies.length > 0){
+            <div class="flex flex-col md:flex-row justify-end gap-2  mb-4">
+              <button (click)="deleteFromDatabaseBatch()" class=" bg-gradient-to-r from-accent-blue/80 to-accent-purple hover:from-accent-pink  text-white px-4 py-2 text-sm sm:text-lg rounded-md cursor-pointer  hover:bg-opacity-80 transition-all duration-300">
+                Delete Selected from Database
+              </button>
+              <button (click)="resetSelectedMovies()" class=" bg-transparent border border-base-text/50 hover:bg-base-text/40 text-base-text px-4 py-2 text-sm sm:text-lg rounded-md cursor-pointer transition-all duration-300">
+                Reset Selected
+              </button>
+            </div>
+          }
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 ">
+            @for (movie of databaseMovies; track movie.imdbID) {
+            <app-adminmoviecard
+              [movie]="movie"
+              (movieSelected)="selectMovie($event)"
+              (movieUnselected)="unselectMovie($event)"
+              [tab]="'database'"
+              [isSelected]="selectedMovies.includes(movie)">
+            </app-adminmoviecard>
+          }
+
+        </div>
+      </div>
+    }
+
+
+
+  </div>
+
+
+
+</div>

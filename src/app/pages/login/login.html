@@ -1,0 +1,52 @@
+<div class="flex items-center justify-center h-screen  bg-base-section  px-2 sm:px-4 md:px-8 py-20">
+
+  <form
+    [formGroup]="loginForm"
+    class="bg-base-nav/30 p-6 flex flex-col gap-6 rounded-lg border-1 border-accent-blue   shadow-[0_0_10px_rgba(0,245,255,0.5)]  w-96"
+  >
+    <div class="flex flex-col gap-2">
+      <h2 class="text-3xl font-bold  text-center  bg-gradient-to-l from-accent-purple to-accent-blue text-transparent bg-clip-text">Login</h2>
+      <p class="text-center text-base-heading">Welcome back! Please enter your details.</p>
+    </div>
+
+
+    <div class="flex flex-col gap-6">
+
+      <!-- Email -->
+      <div class="flex items-center gap-2 py-2  border-b-1 border-base-text">
+        <lucide-angular [img]="userIcon" class="my-icon text-base-heading"></lucide-angular>
+        <input type="email" placeholder="Username" formControlName="username" class="text-base-heading w-full outline-none bg-transparent " />
+      </div>
+
+      <!-- Password -->
+      <div class="flex items-center gap-2 py-2  border-b-1 border-base-text">
+        <lucide-angular [img]="LockIcon" class="my-icon text-base-heading"></lucide-angular>
+        <input [type]="showPassword ? 'text' : 'password'" placeholder="Password" formControlName="password" class="text-base-heading w-full outline-none bg-transparent " />
+        <lucide-angular [img]="EyeIcon" class="my-icon text-base-heading" (click)="showPassword = !showPassword"></lucide-angular>
+      </div>
+
+
+
+      <!-- submit button -->
+
+      <div class="flex flex-col gap-2">
+        <button type="submit"
+        (click)="login()"
+        value="admin"
+          class="bg-gradient-to-r from-accent-blue to-accent-purple text-lg text-primary-black px-4 py-2 rounded-md cursor-pointer hover:scale-105 transition-all duration-300  "
+        >
+          Login
+        </button>
+
+        <!-- Error Message -->
+        @if(errorMessage$){
+        <p class="text-center  text-red-500">{{errorMessage$}}</p>
+        }
+
+        <p class="text-center text-base-heading">Don't have an account? <a href="/register" class="text-accent-blue">Register</a></p>
+
+      </div>
+
+    </div>
+  </form>
+</div>

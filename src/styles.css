@@ -1,1 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+
+* {
+  box-sizing: border-box !important;
+  font-family: "Inter", sans-serif;
+}
+
+
+@theme {
+  --color-primary-black: #03050A;
+  --color-slate-gray: #727989;
+
+  /* base */
+  --color-base-dark: #03050A; /* background */
+  --color-base-nav: #0C111C; /* nav  card*/
+  --color-base-section: #13192F; /* background */
+  --color-base-text: #727989; /* text */
+  --color-base-heading: #BDBEC5; /* heading */
+
+  /* accent */
+  --color-accent-blue: #00F5FF; /* accent blue */
+  --color-accent-purple: #9D4EDD; /* accent purple */
+  --color-accent-pink: #FF2E92; /* accent pink */
+
+}
+

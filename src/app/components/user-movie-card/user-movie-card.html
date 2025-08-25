@@ -1,0 +1,17 @@
+<div (click)="gotoproductdetail(movie.imdbID)" class="flex flex-col gap-4 w-full h-full p-0.5   hover:bg-gradient-to-br from-accent-purple to-accent-blue rounded-lg hover:scale-105 hover:bg-opacity-80 hover:cursor-pointer  hover:shadow-[0_0_10px_rgba(0,245,255,0.5)]  transition-all duration-300  ">
+  <div class=" bg-base-nav w-full h-full   flex flex-col gap-2 p-2 rounded-lg  border-1 border-base-text/50  ">
+
+    <div class=" overflow-hidden max-h-[300px] w-full flex items-center justify-center">
+      <img [src]=" movie.poster" alt="movie image" class="max-w-sm h-full object-cover  ">
+    </div>
+
+    <div class=" short-details flex flex-col gap-1 ">
+
+      <h2 class=" text-base-heading text-lg font-semibold  min-h-[60px] line-clamp-2">{{movie.title}}</h2>
+      <h4 class="text-sm font-semibold text-base-text">{{movie.type}}</h4>
+      <!-- <h4 class="text-sm font-semibold text-accent-pink/60">{{movie.year}}</h4> -->
+    </div>
+
+
+  </div>
+</div>
