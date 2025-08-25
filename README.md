@@ -54,7 +54,12 @@ export const environment = {
 
 **Important Notes:**
 - **Backend API**: The app expects a backend server running on `http://localhost:8080/api`
-- **OMDB API**: Uses a demo API key (consider getting your own from [OMDB API](http://www.omdbapi.com/))
+- **OMDB API**: Uses a demo API key (consider getting your own from [OMDB API](http://www.omdbapi.com/))'
+- **Default Admin User**: When the backend starts, a default 
+
+admin user is automatically created with:
+  - **Username**: `admin`
+  - **Password**: `admin123`
 
 ### 4. Start the Development Server
 
