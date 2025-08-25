@@ -20,21 +20,18 @@ export class MovieService {
 
   // ====== OMDB METHODS ======
 
-    // search movies function by title and/or date
+    // search movies function by title and/or date and page number
     searchMovies(query : string , date : string, page : number = 1): Observable<any>{
       let url = this.omdbUrl;
 
-      // Add search query if provided
       if (query) {
         url += `&s=${query}`;
       }
 
-      // Add year filter if provided
       if (date) {
         url += `&y=${date}`;
       }
 
-      // If only date is provided without query, search for popular movies of that year
       if (!query && date) {
         url += `&s=movie`;
       }
@@ -42,7 +39,6 @@ export class MovieService {
 
     }
 
-    // get movie details function by  id
     getMovieDetails(movieId : string): Observable<any>{
       const url = `${this.omdbUrl}&i=${movieId}&plot=full`;
       console.log(url);
@@ -56,23 +52,19 @@ export class MovieService {
       return this.http.get(`${this.backendUrl}`);
     }
 
-    // get movie by id
     getmoviebyid(id : string) : Observable<any>{
       return this.http.get(this.backendUrl + '/' + id);
     }
 
-    // add movie to DB
     addmovie(movie : any) : Observable<any>{
       return this.http.post(this.backendUrl, movie);
     }
 
-    // delete movie from DB
     deletemovie(imdbID : string) : Observable<any>{
       return this.http.delete(`${this.backendUrl}/${imdbID}`);
     }
 
 
-    // batch add and delete movies
     batchaddmovies(movies : any[]) : Observable<any>{
       return this.http.post(this.backendUrl + '/batch', movies);
     }

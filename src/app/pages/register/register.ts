@@ -23,7 +23,7 @@ export class Register {
   loggedIn = false;
 
   constructor(private fb: FormBuilder, private router: Router, private auth: Auth) {
-    // initialize the form
+    
     this.registerForm = this.fb.group({
       username: [''],
       password: [''],
@@ -33,12 +33,9 @@ export class Register {
 
 
   register() {
-    // Clear previous error message
     this.errorMessage$ = '';
-
     const { username, password } = this.registerForm.value;
 
-    // Basic validation
     if (!username || !password) {
       this.errorMessage$ = 'Please fill all fields';
       return;
@@ -49,11 +46,9 @@ export class Register {
       return;
     }
 
-    // Call auth service register method
     this.auth.register(this.registerForm.value).subscribe({
       next: (response) => {
         this.errorMessage$ = '';
-        // Navigate to login page on success
         this.router.navigate(['/login']);
       },
       error: (error) => {

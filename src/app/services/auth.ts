@@ -11,17 +11,16 @@ export class Auth {
   private backendUrl = environment.backendUrl + '/auth';
 
   constructor(private http: HttpClient) {
-    // Check if user is already logged in on service initialization
+
     this.checkExistingAuth();
   }
 
-  // create two behavior subjects for isLoggedIn and userRole
   private isLoggedIn = new BehaviorSubject<boolean>(false);
   private userRole = new BehaviorSubject<string | null>(null);
   private user = new BehaviorSubject<any | null>(null);
   private errorMessage = new BehaviorSubject<string | null>(null);
 
-  // for read only
+  // for read only access to the behavior subjects
   isLoggedIn$ = this.isLoggedIn.asObservable();
   userRole$ = this.userRole.asObservable();
   user$ = this.user.asObservable();
@@ -37,15 +36,14 @@ export class Auth {
         this.userRole.next(userData.role);
         this.user.next(userData);
       } catch (error) {
-        // Invalid user data in localStorage, remove it
+        
         localStorage.removeItem('user');
       }
     }
   }
 
-  //register function - now returns Observable
+
   register(user: any): Observable<any> {
-    // Clear any previous error messages
     this.errorMessage.next(null);
 
     return this.http.post(`${this.backendUrl}/register`, user).pipe(
@@ -62,9 +60,7 @@ export class Auth {
     );
   }
 
-  // login function -  returns Observable
   login(user: any): Observable<any> {
-    // Clear any previous error messages
     this.errorMessage.next(null);
 
     return this.http.post(`${this.backendUrl}/login`, user).pipe(
@@ -87,14 +83,12 @@ export class Auth {
     );
   }
 
-  // logout function
   logout(){
     this.isLoggedIn.next(false)
     this.userRole.next(null)
     localStorage.removeItem('user')
   }
 
-  // get user role
   getUserRole$(){
     return this.userRole.getValue()
   }

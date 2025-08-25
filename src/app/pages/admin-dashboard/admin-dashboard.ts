@@ -18,20 +18,17 @@ export class AdminDashboard implements OnInit {
   SearchIcon = Search;
   CalendarSearch = CalendarSearch;
 
-  // search variables
   date : string = '';
   query : string = '';
   page : number = 1;
-  // search results
+
   movies : Movie[] = [];
-  // loading state
   isLoading : boolean = false;
   error : string = '';
-  // Get all movies in database
+
   databaseMovies : Movie[] = [];
-  // active tab
   activeTab : string = 'database';
-  // selected movies
+
   selectedMovies : Movie[] = [];
 
 
@@ -45,14 +42,14 @@ export class AdminDashboard implements OnInit {
 
 
   searchMovies(){
-    // Check if at least one field is filled
+
     if (!this.query.trim() && !this.date.trim()) {
       alert('Please enter either a movie name or date to search');
       return;
     }
     this.isLoading = true;
 
-    this.movies = []; // Clear previous results
+    this.movies = [];
 
     this.movieService.searchMovies(this.query.trim(), this.date.trim(), this.page).subscribe(
       {
@@ -86,8 +83,8 @@ export class AdminDashboard implements OnInit {
   }
 
 
-  /// add this to a separate component to show the movies in the database for admin
-  // Fetch stored movies when the component is initialized
+
+  // fetch stored movies when the component is initialized and update the databaseMovies array
   ngOnInit(): void {
     this.moviestoreService.fetchStoredMovies();
     this.moviestoreService.movies$.subscribe((movies) => {
@@ -96,38 +93,38 @@ export class AdminDashboard implements OnInit {
     console.log("Database movies", this.databaseMovies);
   }
 
-  // switch to search tab
+
   switchToSearch() {
     this.activeTab = 'search';
     this.selectedMovies = [];
   }
 
-  // switch to database tab
+
   switchToDatabase() {
     this.activeTab = 'database';
     this.selectedMovies = [];
   }
 
 
-  // select movie
+
   selectMovie(movie : Movie){
     this.selectedMovies.push(movie);
     console.log("Selected movies", this.selectedMovies);
   }
 
-  // unselect movie
+
   unselectMovie(movie : Movie){
     this.selectedMovies = this.selectedMovies.filter(m => m.imdbID !== movie.imdbID);
     console.log("Selected movies", this.selectedMovies);
   }
 
-  // reset selected movies
+
   resetSelectedMovies(){
     this.selectedMovies = [];
   }
 
 
-  // batch add movies to database
+
   addToDatabaseBatch(){
     this.movieService.batchaddmovies(this.selectedMovies).subscribe({
       next : (response : any) => {
@@ -141,7 +138,7 @@ export class AdminDashboard implements OnInit {
     })
   }
 
-  // batch delete movies from database
+
   deleteFromDatabaseBatch(){
     this.movieService.batchdeletemovies(this.selectedMovies.map(movie => movie.imdbID)).subscribe({
       next : (response : any) => {

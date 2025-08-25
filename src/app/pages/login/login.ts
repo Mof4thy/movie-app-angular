@@ -23,7 +23,7 @@ export class Login {
   loggedIn = false;
 
   constructor(private fb: FormBuilder, private router: Router, private auth: Auth) {
-    // initialize the form
+    
     this.loginForm = this.fb.group({
       username: [''],
       password: [''],
@@ -32,27 +32,21 @@ export class Login {
 
 
   login() {
-    // Clear previous error message
     this.errorMessage$ = '';
-
     const { username, password } = this.loginForm.value;
-
 
     if (!username || !password) {
       this.errorMessage$ = 'Please fill all fields';
       return;
     }
 
-    // Validate password length
     if (password.length < 6) {
       this.errorMessage$ = 'Password must be at least 6 characters long';
       return;
     }
 
-    // Call auth service login method
     this.auth.login(this.loginForm.value).subscribe({
       next: (response) => {
-        // Navigate based on user role
         if (response.role === 'USER') {
           this.router.navigate(['/home']);
         } else if (response.role === 'ADMIN') {

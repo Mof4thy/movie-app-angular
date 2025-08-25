@@ -16,7 +16,6 @@ export class MovieDetails {
   movie: Movie = {} as Movie;
   movieId: string = '';
 
-  // Icons
   readonly ArrowLeftIcon = ArrowLeft;
 
 

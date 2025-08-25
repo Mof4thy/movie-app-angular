@@ -15,7 +15,6 @@ export class Auth2Guard implements CanActivate {
     return combineLatest([this.auth.isLoggedIn$, this.auth.userRole$]).pipe(
       map(([isLoggedIn, role]) => {
         if (isLoggedIn) {
-          // Redirect logged-in users to their appropriate dashboard
           if (role === 'ADMIN') {
             this.router.navigate(['/admin-dashboard']);
           } else if (role === 'USER') {
