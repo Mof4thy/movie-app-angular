@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, throwError, catchError, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class Auth {
 
-  private backendUrl = 'http://localhost:8080/api/auth';
+  private backendUrl = environment.backendUrl + '/auth';
 
   constructor(private http: HttpClient) {
     // Check if user is already logged in on service initialization

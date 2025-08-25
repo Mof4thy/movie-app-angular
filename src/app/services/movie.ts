@@ -1,6 +1,7 @@
 import { Injectable, Query } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../environments/environment';
 
 
 @Injectable({
@@ -8,10 +9,10 @@ import { Observable } from 'rxjs';
 })
 export class MovieService {
 
-  private omdbApiKey = 'b12fd311';
+  private omdbApiKey = environment.omdbApiKey;
   private omdbUrl = `http://www.omdbapi.com/?apikey=${this.omdbApiKey}`;
 
-  private backendUrl = 'http://localhost:8080/api/movies';
+  private backendUrl = environment.backendUrl + '/movies';
 
   constructor(private http: HttpClient) {}
 
@@ -54,7 +55,7 @@ export class MovieService {
     getallmovies(): Observable<any>{
       return this.http.get(`${this.backendUrl}`);
     }
-    
+
     // get movie by id
     getmoviebyid(id : string) : Observable<any>{
       return this.http.get(this.backendUrl + '/' + id);
