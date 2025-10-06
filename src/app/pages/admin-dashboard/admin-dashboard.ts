@@ -18,6 +18,7 @@ export class AdminDashboard implements OnInit {
   SearchIcon = Search;
   CalendarSearch = CalendarSearch;
 
+
   date : string = '';
   query : string = '';
   page : number = 1;
@@ -48,7 +49,6 @@ export class AdminDashboard implements OnInit {
       return;
     }
     this.isLoading = true;
-
     this.movies = [];
 
     this.movieService.searchMovies(this.query.trim(), this.date.trim(), this.page).subscribe(
@@ -122,7 +122,6 @@ export class AdminDashboard implements OnInit {
   resetSelectedMovies(){
     this.selectedMovies = [];
   }
-
 
 
   addToDatabaseBatch(){

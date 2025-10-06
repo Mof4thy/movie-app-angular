@@ -26,6 +26,7 @@ export class Auth {
   user$ = this.user.asObservable();
   errorMessage$ = this.errorMessage.asObservable();
 
+
   // Check if user is already logged in from localStorage
   private checkExistingAuth(): void {
     const user = localStorage.getItem('user');
@@ -36,7 +37,7 @@ export class Auth {
         this.userRole.next(userData.role);
         this.user.next(userData);
       } catch (error) {
-        
+
         localStorage.removeItem('user');
       }
     }
@@ -62,7 +63,6 @@ export class Auth {
 
   login(user: any): Observable<any> {
     this.errorMessage.next(null);
-
     return this.http.post(`${this.backendUrl}/login`, user).pipe(
       tap((res: any) => {
         this.isLoggedIn.next(true);
@@ -83,9 +83,13 @@ export class Auth {
     );
   }
 
+
+
   logout(){
     this.isLoggedIn.next(false)
     this.userRole.next(null)
+    this.user.next(null)
+    this.errorMessage.next(null)
     localStorage.removeItem('user')
   }
 

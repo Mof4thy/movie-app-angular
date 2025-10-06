@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Auth } from '../../services/auth';
 import { LucideAngularModule, User, Lock, Eye  } from 'lucide-angular';
 
 @Component({
   selector: 'app-register',
-  imports: [CommonModule, ReactiveFormsModule, LucideAngularModule],
+  imports: [CommonModule, ReactiveFormsModule, LucideAngularModule, RouterModule],
   templateUrl: './register.html',
   styleUrl: './register.css'
 })
@@ -23,7 +23,7 @@ export class Register {
   loggedIn = false;
 
   constructor(private fb: FormBuilder, private router: Router, private auth: Auth) {
-    
+
     this.registerForm = this.fb.group({
       username: [''],
       password: [''],

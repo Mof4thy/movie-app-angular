@@ -12,6 +12,7 @@ export class Auth2Guard implements CanActivate {
   constructor(private auth: Auth, private router: Router){}
 
   canActivate(): Observable<boolean> {
+    
     return combineLatest([this.auth.isLoggedIn$, this.auth.userRole$]).pipe(
       map(([isLoggedIn, role]) => {
         if (isLoggedIn) {

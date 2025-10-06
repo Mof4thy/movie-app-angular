@@ -1,51 +1,49 @@
 
 <div class="flex flex-col gap-2 bg-base-nav w-full h-full border border-base-text/20 rounded-lg shadow-md">
 
-
-
-    <div class="relative">
-      <div class=" overflow-hidden max-h-[300px] w-full flex items-center justify-center">
-        <img [src]=" movie?.poster" alt="movie image" class="max-w-sm min-h-[300px] object-cover  ">
+  <div class="relative">
+    <div class=" overflow-hidden max-h-[300px] w-full flex items-center justify-center">
+      <img [src]=" movie?.poster" alt="movie image" class="max-w-sm min-h-[300px] object-cover  ">
+    </div>
+    @if(!isInDatabase(movie?.imdbID!) && tab === 'search'){
+      <div class="absolute z-10 top-2 right-2">
+        <input type="checkbox"
+        class="w-6 h-6 "
+        (change)="toggleSelect(movie!)"
+        [checked]="isSelected"
+        >
       </div>
-      @if(!isInDatabase(movie?.imdbID!) && tab === 'search'){
-        <div class="absolute z-10 top-2 right-2">
-          <input type="checkbox"
-          class="w-6 h-6 "
-          (change)="toggleSelect(movie!)"
-          [checked]="isSelected"
-          >
-        </div>
-      }
+    }
 
-      @if(isInDatabase(movie?.imdbID!) && tab === 'database'){
-        <div class="absolute z-10 top-2 right-2">
-          <input type="checkbox"
-          class="w-6 h-6 "
-          (change)="toggleSelect(movie!)"
-          [checked]="isSelected"
-          >
-        </div>
-      }
-    </div>
+    @if(isInDatabase(movie?.imdbID!) && tab === 'database'){
+      <div class="absolute z-10 top-2 right-2">
+        <input type="checkbox"
+        class="w-6 h-6 "
+        (change)="toggleSelect(movie!)"
+        [checked]="isSelected"
+        >
+      </div>
+    }
+  </div>
 
-    <div class=" short-details flex flex-col gap-1 p-2">
+  <div class=" short-details flex flex-col gap-1 p-2">
 
-      <h2 class=" text-base-heading text-lg font-semibold  min-h-[60px] line-clamp-2">{{movie?.title}}</h2>
-      <h4 class="text-sm font-semibold text-base-text">{{movie?.type}}</h4>
-      <h4 class="text-sm font-semibold text-base-text">{{movie?.year}}</h4>
+    <h2 class=" text-base-heading text-lg font-semibold  min-h-[60px] line-clamp-2">{{movie?.title}}</h2>
+    <h4 class="text-sm font-semibold text-base-text">{{movie?.type}}</h4>
+    <h4 class="text-sm font-semibold text-base-text">{{movie?.year}}</h4>
 
-      @if(!isInDatabase(movie?.imdbID!)){
-        <button (click)="addToDatabase()" class="mt-2 bg-green-600 hover:bg-green-700 text-white px-2 py-1 rounded w-full cursor-pointer transition-all duration-300">
-          Add to Database
-        </button>
-      }
-      @if(isInDatabase(movie?.imdbID!)){
-        <button (click)="deleteFromDatabase(movie?.imdbID!)" class="mt-2 bg-red-600 hover:bg-red-700 text-white px-2 py-1 rounded w-full cursor-pointer transition-all duration-300">
-          Delete from Database
-        </button>
-      }
+    @if(!isInDatabase(movie?.imdbID!)){
+      <button (click)="addToDatabase()" class="mt-2 bg-green-600 hover:bg-green-700 text-white px-2 py-1 rounded w-full cursor-pointer transition-all duration-300">
+        Add to Database
+      </button>
+    }
+    @if(isInDatabase(movie?.imdbID!)){
+      <button (click)="deleteFromDatabase(movie?.imdbID!)" class="mt-2 bg-red-600 hover:bg-red-700 text-white px-2 py-1 rounded w-full cursor-pointer transition-all duration-300">
+        Delete from Database
+      </button>
+    }
 
-
-    </div>
 
   </div>
+
+</div>
