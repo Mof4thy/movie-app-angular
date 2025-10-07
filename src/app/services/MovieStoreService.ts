@@ -5,7 +5,6 @@ import { Movie } from '../models/movie';
 import { BehaviorSubject } from 'rxjs';
 import { MovieService } from './movie';
 
-
 @Injectable({
   providedIn: "root"
 })

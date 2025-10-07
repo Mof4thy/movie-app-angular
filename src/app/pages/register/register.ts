@@ -52,7 +52,7 @@ export class Register {
         this.router.navigate(['/login']);
       },
       error: (error) => {
-        this.errorMessage$ = error.error.text;
+        this.errorMessage$ = error.error.text || error.error;
       }
     });
   }

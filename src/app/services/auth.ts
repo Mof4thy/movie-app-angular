@@ -6,6 +6,7 @@ import { environment } from '../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
+
 export class Auth {
 
   private backendUrl = environment.backendUrl + '/auth';
@@ -46,7 +47,6 @@ export class Auth {
 
   register(user: any): Observable<any> {
     this.errorMessage.next(null);
-
     return this.http.post(`${this.backendUrl}/register`, user).pipe(
       tap((res: any) => {
         console.log('Registration successful:', res);

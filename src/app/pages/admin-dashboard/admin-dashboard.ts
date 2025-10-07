@@ -11,7 +11,7 @@ import { MovieStoreService } from '../../services/MovieStoreService';
   selector: 'app-admin-dashboard',
   imports: [CommonModule, FormsModule, LucideAngularModule, AdminMovieCard],
   templateUrl: './admin-dashboard.html',
-  styleUrl: './admin-dashboard.css'
+  styleUrl: './admin-dashboard.css' 
 })
 export class AdminDashboard implements OnInit {
 
@@ -79,9 +79,7 @@ export class AdminDashboard implements OnInit {
         }
       }
     )
-
   }
-
 
 
   // fetch stored movies when the component is initialized and update the databaseMovies array

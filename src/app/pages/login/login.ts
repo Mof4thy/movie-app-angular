@@ -55,7 +55,7 @@ export class Login {
         }
       },
       error: (error) => {
-        this.errorMessage$ = error.error.text;
+        this.errorMessage$ = error.error.text || error.error;
       }
     });
   }
